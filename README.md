@@ -1,6 +1,6 @@
 # Salesforce: Google searcher integration
 
-This is a django rest framework api to allow Salesforce do searches in google based on tokens to search 
+This is a django rest framework api to allow Salesforce do searches in google based on tokens to search. The intention is to do searches of data based on scientific profiles from emails and fullnames to search expanded information  
 
 # Live demo here:
 
