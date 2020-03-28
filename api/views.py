@@ -13,6 +13,7 @@ from api.serializers import (
 	UserSerializer, OrganizationSerializer, 
 	TeamSerializer, KpiSerializer, KpiValueSerializer,
 )
+from googlesearch import search 
 
 @api_view(('GET',))
 def api_root(request, format=None):
@@ -31,6 +32,16 @@ class PingView(APIView):
 		data = {'ping': 'pong'}
 
 		return JSONResponseMixin(data)
+	
+class ScrapeView(APIView):
+	def get(self, request):
+		email = request.get('email')
+		name = request.get('name')
+		query = email + ' OR '+name
+		result = ''
+		for j in search(query, tld="com", num=10, stop=10, pause=2): 
+			result+=j
+		return JSONResponseMixin(result)
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
 	queryset = User.objects.all()
