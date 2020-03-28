@@ -35,8 +35,8 @@ class PingView(APIView):
 	
 class ScrapeView(APIView):
 	def get(self, request):
-		email = request.get('email')
-		name = request.get('name')
+		email = request.query_params.get('email')
+		name = request.query_params.get('name')
 		query = email + ' OR '+name
 		result = ''
 		for j in search(query, tld="com", num=10, stop=10, pause=2): 
