@@ -38,9 +38,9 @@ class ScrapeView(APIView):
 		email = request.query_params.get('email')
 		name = request.query_params.get('name')
 		query = email + ' OR '+name
-		result = ''
+		result = []
 		for j in search(query, tld="com", num=10, stop=10, pause=2): 
-			result+=j
+			result.append(j)
 		return JSONResponseMixin(result)
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
