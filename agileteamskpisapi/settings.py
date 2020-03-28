@@ -155,4 +155,4 @@ STATICFILES_DIRS = () # no global static media , just the per-app
 # allowing all hosts to perform queries
 CORS_ORIGIN_ALLOW_ALL = True
 
-django_heroku.settings(locals())
+#django_heroku.settings(locals())
