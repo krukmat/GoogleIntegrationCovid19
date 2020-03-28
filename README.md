@@ -1,10 +1,10 @@
-# Django Ionic Dashboard
+# Salesforce: Google searcher integration
 
-This is a django rest framework api and an IONIC app able to run on heroku or dokku.
+This is a django rest framework api to allow Salesforce do searches in google based on tokens to search 
 
 # Live demo here:
 
-https://didashboard.herokuapp.com
+soon
 
 # To deploy to heroku
 
@@ -16,9 +16,6 @@ $ heroku run python manage.py migrate
 $ heroku run python manage.py createsuperuser
 $ heroku ps:scale web=1
 ```
-
-- Login with the admin credentials into the API https://mydashboard.herokuapp.com/api/ and fill some data.
-- The dashboard runs at https://mydashboard.herokuapp.com
 
 
 
