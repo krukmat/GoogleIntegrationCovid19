@@ -125,9 +125,10 @@ import dj_database_url
 # Use this database url for local development with sqlite
 # sqlite:////full/path/to/your/database/devdb.sqlite3
 db_from_env = dj_database_url.config()
-DATABASES['default'].update(db_from_env)
+DATABASES['default'] = dj_database_url.config()
+#DATABASES['default'].update(db_from_env)
 
-#DATABASES['default'] = dj_database_url.config()
+
 
 # Enable Persistent Connections
 DATABASES['default']['CONN_MAX_AGE'] = 500
