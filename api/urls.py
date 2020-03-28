@@ -1,10 +1,9 @@
 from rest_framework.routers import DefaultRouter
+from django.conf.urls import url, include
 from api.views import (
 	PingView, UserViewSet, OrganizationViewSet, TeamViewSet,
 	KpiList, KpiDetail, KpiValueList, KpiValueDetail,
 )
-
-from django.conf.urls.defaults import *
 
 # This two if you want to enable the Django Admin: (recommended)
 from django.contrib import admin
