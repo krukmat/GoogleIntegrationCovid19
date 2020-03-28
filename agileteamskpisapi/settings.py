@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/1.9/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
-
+import django_heroku
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -124,7 +124,10 @@ USE_TZ = True
 import dj_database_url
 # Use this database url for local development with sqlite
 # sqlite:////full/path/to/your/database/devdb.sqlite3
-DATABASES['default'] = dj_database_url.config()
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
+
+#DATABASES['default'] = dj_database_url.config()
 
 # Enable Persistent Connections
 DATABASES['default']['CONN_MAX_AGE'] = 500
@@ -150,3 +153,5 @@ STATICFILES_DIRS = () # no global static media , just the per-app
 
 # allowing all hosts to perform queries
 CORS_ORIGIN_ALLOW_ALL = True
+
+django_heroku.settings(locals())
