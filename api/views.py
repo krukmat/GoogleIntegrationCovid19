@@ -63,6 +63,8 @@ class ScrapeView(APIView):
 		]
 		output = ''
 		returnlist = []
+		nltk.download('stopwords')
+		nltk.download('all-corpora')
 		for j in search(query, tld="com", num=10, stop=10, pause=2): 
 			url = j 
 			res = requests.get(url)
@@ -83,8 +85,6 @@ class ScrapeView(APIView):
 			blacklistWords.append('retweet')
 			blacklistWords.append('follow')
 			blacklistWords.append(email.lower())
-			nltk.download('stopwords')
-			nltk.download('all-corpora')
 			output = ''
 			#
 			for t in text:				
