@@ -61,6 +61,7 @@ class ScrapeView(APIView):
 			'header'
 		]
 		output = ''
+		returnlist = []
 		for j in search(query, tld="com", num=10, stop=10, pause=2): 
 			url = j 
 			res = requests.get(url)
@@ -82,7 +83,7 @@ class ScrapeView(APIView):
 			blacklistWords.append('follow')
 			blacklistWords.append(email.lower())
 			nltk.download('stopwords')
-			returnlist = []
+			
 			#
 			for t in text:				
 				if t.parent.name not in blacklistTokens and any([any(str.lower() in s for s in whitelist) for str in t.split()]) and not any([any(str.lower() in s for s in blacklistWords) for str in t.split()]) and  not any([str in stopwords.words('english') for str in t.split()]):
