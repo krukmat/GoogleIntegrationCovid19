@@ -45,7 +45,7 @@ class ScrapeView(APIView):
 		query = email + ' OR '+name
 		result = []
 		#filtering
-		originalBlacklist = [
+		blacklistTokens = [
 			'[document]',
 			'noscript',
 			'header',
@@ -64,14 +64,14 @@ class ScrapeView(APIView):
 			html_page = res.content
 			soup = BeautifulSoup(html_page, 'html.parser')
 			text = soup.find_all(text=True)
-			blacklist = originalBlacklist
-			blacklist.append(firstname)
-			blacklist.append(lastname)
-			blacklist.append(firstname + '  ' + lastname)
-			blacklist.append(lastname + '  ' + firstname)
-			blacklist.append(email)
+			blacklistWords = []
+			blacklistWords.append(firstname)
+			blacklistWords.append(lastname)
+			blacklistWords.append(firstname + '  ' + lastname)
+			blacklistWords.append(lastname + '  ' + firstname)
+			blacklistWords.append(email)
 			for t in text:
-				if t.parent.name not in blacklist:
+				if t.parent.name not in blacklistTokens and t not in blacklistWords:
 					output += '{} '.format(t)
 		#word cloud
 		wordcloud = WordCloud().process_text(output)
