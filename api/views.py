@@ -41,7 +41,7 @@ class ScrapeView(APIView):
 		email = request.query_params.get('email')
 		firstname = request.query_params.get('firstname')
 		lastname = request.query_params.get('lastname')
-		name = lastname + ', '+ firstname
+		name = request.query_params.get('name')
 		query = email + ' OR '+name
 		result = []
 		#filtering
@@ -67,8 +67,8 @@ class ScrapeView(APIView):
 			blacklist = originalBlacklist
 			blacklist.append(firstname)
 			blacklist.append(lastname)
-			blacklist.append(firstname + ' ' + lastname)
-			blacklist.append(lastname + ' ' + firstname)
+			blacklist.append(firstname + '  ' + lastname)
+			blacklist.append(lastname + '  ' + firstname)
 			blacklist.append(email)
 			for t in text:
 				if t.parent.name not in blacklist:
