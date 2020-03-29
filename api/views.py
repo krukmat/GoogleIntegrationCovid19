@@ -16,6 +16,7 @@ from api.serializers import (
 from googlesearch import search 
 import requests
 from bs4 import BeautifulSoup
+from wordcloud import WordCloud, STOPWORDS
 
 @api_view(('GET',))
 def api_root(request, format=None):
@@ -41,6 +42,7 @@ class ScrapeView(APIView):
 		name = request.query_params.get('name')
 		query = email + ' OR '+name
 		result = []
+		#filtering
 		blacklist = [
 			'[document]',
 			'noscript',
@@ -63,7 +65,9 @@ class ScrapeView(APIView):
 			for t in text:
 				if t.parent.name not in blacklist:
 					output += '{} '.format(t)
-		return JSONResponseMixin(output)
+		#word cloud
+		wordcloud = WordCloud().generate(output)
+		return JSONResponseMixin(wordcloud)
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
 	queryset = User.objects.all()

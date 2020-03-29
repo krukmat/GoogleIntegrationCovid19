@@ -11,3 +11,4 @@ google
 beautifulsoup4
 requests
 lxml
+wordcloud
