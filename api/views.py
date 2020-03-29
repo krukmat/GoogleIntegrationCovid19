@@ -67,6 +67,7 @@ class ScrapeView(APIView):
 					output += '{} '.format(t)
 		#word cloud
 		wordcloud = WordCloud().process_text(output)
+		wordcloud = {k: v for k, v in sorted(wordcloud.items(), key=lambda item: item[1], reverse=True)}
 		return JSONResponseMixin(wordcloud)
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
