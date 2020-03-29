@@ -39,9 +39,29 @@ class ScrapeView(APIView):
 		name = request.query_params.get('name')
 		query = email + ' OR '+name
 		result = []
+		blacklist = [
+			'[document]',
+			'noscript',
+			'header',
+			'html',
+			'meta',
+			'head', 
+			'input',
+			'script',
+			'\n'
+			'style'
+		]
+		output = ''
 		for j in search(query, tld="com", num=10, stop=10, pause=2): 
-			result.append(j)
-		return JSONResponseMixin(result)
+			url = j 
+			res = requests.get(url)
+			html_page = res.content
+			soup = BeautifulSoup(html_page, 'html.parser')
+			text = soup.find_all(text=True)
+			for t in text:
+				if t.parent.name not in blacklist:
+					output += '{} '.format(t)
+		return JSONResponseMixin(output)
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
 	queryset = User.objects.all()
