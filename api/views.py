@@ -88,10 +88,12 @@ class ScrapeView(APIView):
 			for t in text:				
 				if t.parent.name not in blacklistTokens and any([any(str.lower() in s for s in whitelist) for str in t.split()]) and not any([any(str.lower() in s for s in blacklistWords) for str in t.split()]) and  not any([str in stopwords.words('english') for str in t.split()]):
 					output += '{} '.format(t)
-		#word cloud
-		wordcloud = WordCloud().process_text(output)
-		wordcloud = {k: v for k, v in sorted(wordcloud.items(), key=lambda item: item[1], reverse=True)}
-		return JSONResponseMixin(wordcloud)
+			#word cloud
+			wordcloud = WordCloud().process_text(output)
+			wordcloud = {k: v for k, v in sorted(wordcloud.items(), key=lambda item: item[1], reverse=True)}
+			if wordcloud:
+				returnlist.append(dict(cloud=wordcloud, url=url))
+		return JSONResponseMixin(returnlist)
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
 	queryset = User.objects.all()
