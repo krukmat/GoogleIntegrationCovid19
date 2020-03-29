@@ -8,6 +8,10 @@ from api.views import (
 from django.contrib import admin
 admin.autodiscover()
 
+
+
+router = DefaultRouter()
+
 urlpatterns = [
 	url(r'^', include(router.urls)),
 	url(r'ping/$', PingView.as_view(), name='ping'),
