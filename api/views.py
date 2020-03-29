@@ -67,8 +67,8 @@ class ScrapeView(APIView):
 			blacklistWords = []
 			blacklistWords.append(firstname)
 			blacklistWords.append(lastname)
-			blacklistWords.append(firstname + '  ' + lastname)
-			blacklistWords.append(lastname + '  ' + firstname)
+			blacklistWords.append(firstname + ' ' + lastname)
+			blacklistWords.append(lastname + ' ' + firstname)
 			blacklistWords.append(email)
 			for t in text:
 				if t.parent.name not in blacklistTokens and t not in blacklistWords:
