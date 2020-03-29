@@ -81,7 +81,7 @@ class ScrapeView(APIView):
 			blacklistWords.append('follow')
 			blacklistWords.append(email.lower())
 			for t in text:				
-				if t.parent.name not in blacklistTokens and not any([any(str.lower() in s for s in blacklistWords) for str in t.split()]) :
+				if  not any([any(str.lower() in s for s in blacklistWords) for str in t.split()]) :
 					output += '{} '.format(t)
 		#word cloud
 		wordcloud = WordCloud().process_text(output)
