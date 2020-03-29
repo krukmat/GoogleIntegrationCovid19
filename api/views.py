@@ -14,6 +14,8 @@ from api.serializers import (
 	TeamSerializer, KpiSerializer, KpiValueSerializer,
 )
 from googlesearch import search 
+import requests
+from bs4 import BeautifulSoup
 
 @api_view(('GET',))
 def api_root(request, format=None):
