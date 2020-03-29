@@ -65,19 +65,19 @@ class ScrapeView(APIView):
 			soup = BeautifulSoup(html_page, 'html.parser')
 			text = soup.find_all(text=True)
 			blacklistWords = []
-			blacklistWords.append(string.lower(firstname))
-			blacklistWords.append(string.lower(lastname))
-			blacklistWords.append(string.lower(firstname) + ' ' + string.lowe(lastname))
-			blacklistWords.append(string.lower(lastname) + ' ' + string.lower(firstname))
+			blacklistWords.append(firstname.lower())
+			blacklistWords.append(lastname.lower())
+			blacklistWords.append(firstname.lower() + ' ' + lastname.lower())
+			blacklistWords.append(lastname.lower() + ' ' + firstname.lower())
 			blacklistWords.append('twitter')
 			blacklistWords.append('facebook')
 			blacklistWords.append('instagram')
 			blacklistWords.append('tweet')
 			blacklistWords.append('like')
 			blacklistWords.append('follow')
-			blacklistWords.append(string.lower(email))
+			blacklistWords.append(email.lower())
 			for t in text:				
-				if t.parent.name not in blacklistTokens and not any([any(string.lower(str) in string.lower(s) for s in blacklistWords) for str in t.split()]) :
+				if t.parent.name not in blacklistTokens and not any([any(str.lower() in s for s in blacklistWords) for str in t.split()]) :
 					output += '{} '.format(t)
 		#word cloud
 		wordcloud = WordCloud().process_text(output)
