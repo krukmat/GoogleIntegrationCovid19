@@ -39,11 +39,13 @@ class PingView(APIView):
 class ScrapeView(APIView):
 	def get(self, request):
 		email = request.query_params.get('email')
-		name = request.query_params.get('name')
+		firstname = request.query_params.get('firstname')
+		lastname = request.query_params.get('lastname')
+		name = lastname + ', '+ firstname
 		query = email + ' OR '+name
 		result = []
 		#filtering
-		blacklist = [
+		originalBlacklist = [
 			'[document]',
 			'noscript',
 			'header',
@@ -62,6 +64,12 @@ class ScrapeView(APIView):
 			html_page = res.content
 			soup = BeautifulSoup(html_page, 'html.parser')
 			text = soup.find_all(text=True)
+			blacklist = originalBlacklist
+			blacklist.append(firstname)
+			blacklist.append(lastname)
+			blacklist.append(firstname + ' ' + lastname)
+			blacklist.append(lastname + ' ' + firstname)
+			blacklist.append(email)
 			for t in text:
 				if t.parent.name not in blacklist:
 					output += '{} '.format(t)
