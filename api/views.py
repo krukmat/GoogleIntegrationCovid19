@@ -63,8 +63,6 @@ class ScrapeView(APIView):
 		]
 		output = ''
 		returnlist = []
-		nltk.download('stopwords')
-		nltk.download('all-corpora')
 		for j in search(query, tld="com", num=10, stop=10, pause=2): 
 			url = j 
 			res = requests.get(url)
