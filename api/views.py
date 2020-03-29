@@ -66,22 +66,11 @@ class ScrapeView(APIView):
 			html_page = res.content
 			soup = BeautifulSoup(html_page, 'html.parser')
 			text = soup.find_all(text=True)
-			blacklistWords = []
-			blacklistWords.append(firstname.lower())
-			blacklistWords.append(lastname.lower())
-			blacklistWords.append(firstname.lower() + ' ' + lastname.lower())
-			blacklistWords.append(lastname.lower() + ' ' + firstname.lower())
-			blacklistWords.append('twitter')
-			blacklistWords.append('facebook')
-			blacklistWords.append('instagram')
-			blacklistWords.append('tweet')
-			blacklistWords.append('like')
-			blacklistWords.append('follow')
-			blacklistWords.append(email.lower())
+			whitelist = ['covid', 'hiv', 'epidemiology', 'infection', 'disease', 'microbiology', 'protein', 'molecul', 'bioengineering', 'malaria']
 			nltk.download('stopwords')
 			#
 			for t in text:				
-				if t.parent.name not in blacklistTokens and not any([any(str.lower() in s for s in blacklistWords) for str in t.split()]) and  not any([str in stopwords.words('english') for str in t.split()]):
+				if any([any(str.lower() in s for s in whitelist) for str in t.split()]):
 					output += '{} '.format(t)
 		#word cloud
 		wordcloud = WordCloud().process_text(output)
