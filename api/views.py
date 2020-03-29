@@ -66,7 +66,8 @@ class ScrapeView(APIView):
 			html_page = res.content
 			soup = BeautifulSoup(html_page, 'html.parser')
 			text = soup.find_all(text=True)
-			whitelist = ['covid', 'hiv', 'epidemiology', 'infection', 'disease', 'microbiology', 'protein', 'molecul', 'bioengineering', 'malaria']
+			whitelist = ['covid', 'hiv', 'epidemiology', 'infection', 'disease', 'microbiology', 'protein', 'molecul', 'bioengineering', 'malaria', 'measles']
+			blacklistWords = []
 			blacklistWords.append(firstname.lower())
 			blacklistWords.append(lastname.lower())
 			blacklistWords.append(firstname.lower() + ' ' + lastname.lower())
