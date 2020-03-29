@@ -83,7 +83,8 @@ class ScrapeView(APIView):
 			blacklistWords.append('retweet')
 			blacklistWords.append('follow')
 			blacklistWords.append(email.lower())
-			nltk.download('popular')
+			nltk.download('stopwords')
+			nltk.download('all-corpora')
 			output = ''
 			#
 			for t in text:				
