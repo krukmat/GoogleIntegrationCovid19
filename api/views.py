@@ -36,7 +36,7 @@ class ScrapeView(APIView):
 		email = request.query_params.get('email')
 		firstname = request.query_params.get('firstname')
 		lastname = request.query_params.get('lastname')
-		name = request.query_params.get('name')
+		name = firstname + ' '+ lastname
 		query = email + ' OR '+name
 		result = []
 		#filtering
