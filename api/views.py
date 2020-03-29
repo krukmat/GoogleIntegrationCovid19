@@ -68,9 +68,8 @@ class ScrapeView(APIView):
 			text = soup.find_all(text=True)
 			whitelist = ['covid', 'hiv', 'epidemiology', 'infection', 'disease', 'microbiology', 'protein', 'molecul', 'bioengineering', 'malaria']
 			nltk.download('stopwords')
-			#
 			for t in text:				
-				if any([any(str.lower() in s for s in whitelist) for str in t.split()]):
+				if t.parent.name not in blacklistTokens and any([any(str.lower() in s for s in whitelist) for str in t.split()]):
 					output += '{} '.format(t)
 		#word cloud
 		wordcloud = WordCloud().process_text(output)
