@@ -67,7 +67,7 @@ class ScrapeView(APIView):
 					output += '{} '.format(t)
 		#word cloud
 		wordcloud = WordCloud().generate(output)
-		return JSONResponseMixin(wordcloud)
+		return wordcloud
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
 	queryset = User.objects.all()
