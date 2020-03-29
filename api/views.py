@@ -66,8 +66,8 @@ class ScrapeView(APIView):
 				if t.parent.name not in blacklist:
 					output += '{} '.format(t)
 		#word cloud
-		wordcloud = WordCloud().generate(output)
-		return wordcloud
+		wordcloud = WordCloud().process_text(output)
+		return JSONResponseMixin(wordcloud)
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
 	queryset = User.objects.all()
