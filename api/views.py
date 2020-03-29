@@ -78,7 +78,8 @@ class ScrapeView(APIView):
 			output = ''
 			#
 			for t in text:				
-				if t.parent.name not in blacklistTokens and any([any(str.lower() in s for s in whitelist) for str in t.split()]) and not any([any(str.lower() in s for s in blacklistWords) for str in t.split()]) and  not any([str in stopwords.words('english') for str in t.split()]):
+				#if t.parent.name not in blacklistTokens and any([any(str.lower() in s for s in whitelist) for str in t.split()]) and not any([any(str.lower() in s for s in blacklistWords) for str in t.split()]) and  not any([str in stopwords.words('english') for str in t.split()]):
+				if t.parent.name not in blacklistTokens and any([any(str.lower() in s for s in whitelist) for str in t.split()]) and not any([any(str.lower() in s for s in blacklistWords) for str in t.split()]):
 					output += '{} '.format(t)
 
 			#noun extraction
