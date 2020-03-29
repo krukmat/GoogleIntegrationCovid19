@@ -14,3 +14,4 @@ lxml
 wordcloud
 html5lib
 nltk
+textblob
