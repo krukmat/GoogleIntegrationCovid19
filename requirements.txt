@@ -12,3 +12,4 @@ beautifulsoup4
 requests
 lxml
 wordcloud
+html5lib
