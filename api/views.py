@@ -62,8 +62,12 @@ class ScrapeView(APIView):
 			url = j 
 			res = requests.get(url)
 			html_page = res.content
-			soup = BeautifulSoup(html_page, 'html.parser')
-			text = soup.find_all(text=True)
+			soup = BeautifulSoup(html_page,"html5lib")
+			text = soup.get_text(strip=True)
+			tokens = [t for t in text.split()]
+			text = tokens[:]
+
+
 			blacklistWords = []
 			blacklistWords.append(firstname.lower())
 			blacklistWords.append(lastname.lower())
