@@ -55,7 +55,7 @@ class ScrapeView(APIView):
 		]
 		output = ''
 		returnlist = []
-		for j in search(query, tld="com", num=10, stop=10, pause=2): 
+		for j in search(query, tld="es", num=10, stop=10, pause=2): 
 			url = j 
 			res = requests.get(url)
 			html_page = res.content
