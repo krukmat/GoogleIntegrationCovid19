@@ -81,7 +81,6 @@ class ScrapeView(APIView):
 				#if t.parent.name not in blacklistTokens and any([any(str.lower() in s for s in whitelist) for str in t.split()]) and not any([any(str.lower() in s for s in blacklistWords) for str in t.split()]) and  not any([str in stopwords.words('english') for str in t.split()]):
 				if t.parent.name not in blacklistTokens and any([any(str.lower() in s for s in whitelist) for str in t.split()]) and not any([any(str.lower() in s for s in blacklistWords) for str in t.split()]):
 					output += '{} '.format(t)
-
 			#noun extraction
 			blob = TextBlob(output)
 			output = ' '.join(blob.noun_phrases) 
@@ -90,4 +89,5 @@ class ScrapeView(APIView):
 			wordcloud = {k: v for k, v in sorted(wordcloud.items(), key=lambda item: item[1], reverse=True)}
 			if wordcloud:
 				returnlist.append(dict(cloud=wordcloud, url=url))
+			time.sleep(10)
 		return JSONResponseMixin(returnlist)
