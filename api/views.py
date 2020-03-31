@@ -20,6 +20,8 @@ from wordcloud import WordCloud, STOPWORDS
 from nltk.corpus import stopwords
 import nltk
 from textblob import TextBlob
+import time
+
 
 class PingView(APIView):
 
