@@ -91,5 +91,5 @@ class ScrapeView(APIView):
 			wordcloud = {k: v for k, v in sorted(wordcloud.items(), key=lambda item: item[1], reverse=True)}
 			if wordcloud:
 				returnlist.append(dict(cloud=wordcloud, url=url))
-			time.sleep(10)
+			#time.sleep(10)
 		return JSONResponseMixin(returnlist)
