@@ -11,7 +11,7 @@ soon
 ```bash
 $ heroku create mydashboard
 $ git push heroku master
-$ heroku config:set DJANGO_SETTINGS_MODULE=agileteamskpisapi.settings
+$ heroku config:set DJANGO_SETTINGS_MODULE=coronaapi.settings
 $ heroku run python manage.py migrate
 $ heroku run python manage.py createsuperuser
 $ heroku ps:scale web=1

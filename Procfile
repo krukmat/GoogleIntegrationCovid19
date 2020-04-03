@@ -1,1 +1,1 @@
-web: gunicorn agileteamskpisapi.wsgi
+web: gunicorn coronaapi.wsgi
