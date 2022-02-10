@@ -1,7 +1,7 @@
 #dj-static==0.0.6 --> Cling
 django-heroku
 static==1.1.1
-Django==2.2.24
+Django==2.2.27
 django-cors==0.1
 django-cors-headers==1.1.0
 djangorestframework==3.11.2
